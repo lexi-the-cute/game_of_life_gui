@@ -8,8 +8,8 @@ use ggez::{
 use std::time::{Duration, Instant};
 
 // Constants for grid and screen dimensions
-const GRID_WIDTH: u32 = 200;
-const GRID_HEIGHT: u32 = 200;
+const GRID_WIDTH: u32 = 100;
+const GRID_HEIGHT: u32 = 100;
 const GRID_CELL_SIZE: i32 = 8;
 const SCREEN_SIZE: (f32, f32) = (
     GRID_WIDTH as f32 * GRID_CELL_SIZE as f32,
@@ -136,7 +136,7 @@ impl GameState {
             // I think this should be 60hz tick rate, but I'm not sure.
             update_interval: Duration::from_secs_f32(1.0 / 60.0),
         };
-        game.randomize();
+//        game.randomize();
         game
     }
 
@@ -195,7 +195,7 @@ impl EventHandler for GameState {
 
         let start_time = Instant::now();
 
-        let mut canvas = graphics::Canvas::from_frame(ctx, Color::WHITE);
+        let mut canvas = graphics::Canvas::from_frame(ctx, Color::BLACK);
 
         for i in 0..self.board_1.cells.len() {
             let cell = self.board_1.cells[i];
@@ -208,7 +208,7 @@ impl EventHandler for GameState {
                     GRID_CELL_SIZE as f32,
                 );
 
-                let square = Mesh::new_rectangle(ctx, DrawMode::fill(), rect, Color::BLACK)?;
+                let square = Mesh::new_rectangle(ctx, DrawMode::fill(), rect, Color::MAGENTA)?;
                 canvas.draw(&square, DrawParam::default());
             }
         }
